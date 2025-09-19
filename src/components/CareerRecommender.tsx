@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Sparkles, Target, TrendingUp, BookOpen, Users, Code, Palette, BarChart3 } from "lucide-react";
+import { Sparkles, Target, TrendingUp, BookOpen, Users, Code, Palette, BarChart3, ExternalLink } from "lucide-react";
 
 interface UserProfile {
   name: string;
@@ -23,6 +23,12 @@ interface CareerRecommendation {
   growthRate: string;
   icon: any;
   learningPath: string[];
+  exploreLinks: {
+    jobPortal: string;
+    learning: string;
+    community: string;
+    salary: string;
+  };
 }
 
 const CareerRecommender = () => {
@@ -57,7 +63,13 @@ const CareerRecommender = () => {
         requiredSkills: ["JavaScript", "React", "Node.js", "Databases"],
         growthRate: "+22% by 2032",
         icon: Code,
-        learningPath: ["Master React", "Learn Node.js", "Database Design", "DevOps Basics"]
+        learningPath: ["Master React", "Learn Node.js", "Database Design", "DevOps Basics"],
+        exploreLinks: {
+          jobPortal: "https://stackoverflow.com/jobs?q=full+stack+developer",
+          learning: "https://www.freecodecamp.org/learn",
+          community: "https://dev.to/t/fullstack",
+          salary: "https://www.glassdoor.com/Salaries/full-stack-developer-salary-SRCH_KO0,20.htm"
+        }
       },
       {
         title: "Data Scientist",
@@ -66,7 +78,13 @@ const CareerRecommender = () => {
         requiredSkills: ["Python", "Machine Learning", "Statistics", "SQL"],
         growthRate: "+35% by 2032",
         icon: BarChart3,
-        learningPath: ["Advanced Python", "ML Algorithms", "Data Visualization", "Cloud Platforms"]
+        learningPath: ["Advanced Python", "ML Algorithms", "Data Visualization", "Cloud Platforms"],
+        exploreLinks: {
+          jobPortal: "https://www.kaggle.com/jobs",
+          learning: "https://www.coursera.org/browse/data-science",
+          community: "https://www.reddit.com/r/datascience/",
+          salary: "https://www.glassdoor.com/Salaries/data-scientist-salary-SRCH_KO0,14.htm"
+        }
       },
       {
         title: "UX/UI Designer",
@@ -75,7 +93,13 @@ const CareerRecommender = () => {
         requiredSkills: ["Design Thinking", "Figma", "User Research", "Prototyping"],
         growthRate: "+13% by 2032",
         icon: Palette,
-        learningPath: ["Design Systems", "User Psychology", "Accessibility", "Design Tools"]
+        learningPath: ["Design Systems", "User Psychology", "Accessibility", "Design Tools"],
+        exploreLinks: {
+          jobPortal: "https://dribbble.com/jobs",
+          learning: "https://www.interaction-design.org/courses",
+          community: "https://designernews.co/",
+          salary: "https://www.glassdoor.com/Salaries/ux-designer-salary-SRCH_KO0,11.htm"
+        }
       }
     ];
 
@@ -311,9 +335,40 @@ const CareerRecommender = () => {
                       </ul>
                     </div>
 
-                    <Button className="w-full bg-gradient-primary hover:animate-glow group-hover:shadow-glow">
-                      Explore Path
-                    </Button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => window.open(rec.exploreLinks.jobPortal, '_blank')}
+                        className="flex items-center gap-1"
+                      >
+                        Jobs <ExternalLink className="h-3 w-3" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => window.open(rec.exploreLinks.learning, '_blank')}
+                        className="flex items-center gap-1"
+                      >
+                        Learn <ExternalLink className="h-3 w-3" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => window.open(rec.exploreLinks.community, '_blank')}
+                        className="flex items-center gap-1"
+                      >
+                        Community <ExternalLink className="h-3 w-3" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => window.open(rec.exploreLinks.salary, '_blank')}
+                        className="flex items-center gap-1"
+                      >
+                        Salary <ExternalLink className="h-3 w-3" />
+                      </Button>
+                    </div>
                   </div>
                 </Card>
               ))}
